@@ -1,12 +1,12 @@
 import React from 'react'
 
 const Alert = (Alert) => {
-    console.log(Alert);
-    // console.log(Alertcolor)
-    // let clase = "alert alert" + { Alertcolor }
+    console.log(Alert)
+
+
     return (
-        <div><div className='' role="alert">
-            <strong>{Alert}</strong>
+        <div><div className='alert alert-primary' role="alert">
+            <strong>{Alert[0]}</strong>
         </div>
         </div>
     )
