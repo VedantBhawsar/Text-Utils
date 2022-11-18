@@ -6,52 +6,76 @@ import { useState } from "react";
 
 function App() {
   const [Text, setText] = useState('');
-  const [alert, setAlert] = useState('');
-  const [alertcolor, setAlertcolor] = useState('');
-  const [labdark, setLabdark] = useState("White Mode")
+  const [alert, setAlert] = useState('')
   const [dark, setDark] = useState('light')
   
+  const showalert = (massage, type) => {{
+      setAlert({
+        msg: massage ,
+        type: type
+      })
+      setTimeout(() => {
+          setAlert({
+            msg: null,
+            type: null
+          })
+        }, 1500);
+      }
+}
+
+
         const ConvertToUp = () => {
+         if(Text===''){
+        showalert("Lavdya kahi tr tak", "danger")
+      }else{
         let uptext = Text.toString().toUpperCase();
         setText(uptext);
-        setAlert("Your Text Is Converted Successfully!")
-        setAlertcolor("success!")
+        showalert("Converted To UpperCase!", "success")
+      }
       }
     
     const ConvertToLow = () => {
-    let lowtext = Text.toString().toLowerCase();
+      if(Text===''){
+        showalert("Lavdya kahi tr tak", "danger")
+      }else{
+        let lowtext = Text.toString().toLowerCase();
         setText(lowtext);
-        setAlert("Your Text Is Converted Successfully!")
-        setAlertcolor("success!")
-    }
-
-    const ClrText = () => {
+        showalert("Converted To LowerCase!", "success")
+      }}
+      
+      const ClrText = () => {
+        if(Text===''){
+        showalert("Bhaii terese nhi hoga !", "danger")
+      }else{
         setText('')
-    }
+        showalert("Cleared Successfully", "dark")
+    }}
 
     const Textchange = (event) => {
         setText(event.target.value);
+    }
+
+    const Refresh =()=>{
+      setText('');
     }
 
 
     const Dark_mode = () => {
         if (dark === "light") {
             setDark('dark')
-            setLabdark("Light Mode")
             document.body.style.backgroundColor='#343a40'
         } else {
           setDark('light')
-          setLabdark("Dark Mode")
           document.body.style.backgroundColor='white'
         }
         }
     
   return (
     <div>
-    <Nav Dark_mode={Dark_mode} labdark={labdark} dark={dark} />
-    <Alert Alert={alert} Alertcolor={alertcolor} />
+    <Nav Dark_mode={Dark_mode}  dark={dark} Refresh={Refresh}/>
+    <Alert alert={alert} />
     <Home ConvertToUp={ConvertToUp} ConvertToLow={ConvertToLow} Textchange={Textchange} 
-         Text={Text} ClrText={ClrText} dark={dark}
+         Text={Text} ClrText={ClrText} dark={dark} 
     />
     </div>
   );
