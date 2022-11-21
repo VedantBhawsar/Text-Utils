@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 const Home = (props) => {
     return (
         <div className="container" style={{ color: props.dark === 'light' ? 'black' : 'white' }}>
@@ -7,18 +9,18 @@ const Home = (props) => {
                 <textarea className="form-control" rows="8" value={props.Text} onChange={props.Textchange} placeholder='Enter Text Here' style={{ backgroundColor: props.dark === 'light' ? 'white' : '#343a40', color: props.dark === 'light' ? 'black' : 'white' }} ></textarea>
             </div>
 
-            <button className="btn btn-primary my-3 mx-2" onClick={props.ConvertToUp}>Convert To UpperCase</button>
-            <button className="btn btn-primary my-3 mx-2" onClick={props.ConvertToLow}>Convert To LowerCase</button>
-            <button className="btn btn-primary my-3 mx-2" onClick={props.ClrText}>Clear</button>
+            <button className="btn btn-primary my-1 mx-2" onClick={props.ConvertToUp}>Convert To UpperCase</button>
+            <button className="btn btn-primary my-1 mx-2" onClick={props.ConvertToLow}>Convert To LowerCase</button>
+            <button className="btn btn-primary my-1 mx-2" onClick={props.ClrText}>Clear</button>
 
 
 
             <h4>Your Text Summary</h4>
             <p>
-                {props.Text.split(" ").length} words and {props.Text.toString().length} characters
+                {props.Text.split(" ").filter((element) => { return element.length !== 0 }).length} words and {props.Text.toString().length} characters
             </p>
             <p>
-                Reading Time {0.008 * props.Text.split(" ").length} min
+                Reading Time {0.008 * props.Text.split(" ").filter((element) => { return element.length !== 0 }).length} min
             </p>
             <h2>
                 Preview
