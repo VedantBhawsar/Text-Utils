@@ -5,6 +5,7 @@ import Nav from "./componend/Nav";
 import { useState } from "react";
 import copy from "copy-to-clipboard";
 import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
+import About from "./componend/About";
 
 function App() {
   const [Text, setText] = useState('');
@@ -81,13 +82,16 @@ function App() {
   }
 
   return (
-    <div>
+    <Router>
       <Nav Dark_mode={Dark_mode} dark={dark} Refresh={Refresh} />
       <Alert alert={alert} />
-      <Home ConvertToUp={ConvertToUp} ConvertToLow={ConvertToLow} Textchange={Textchange}
+    <Routes>
+      <Route  path="/" element={ <Home ConvertToUp={ConvertToUp} ConvertToLow={ConvertToLow} Textchange={Textchange}
         Text={Text} ClrText={ClrText} Copytext={Copytext} dark={dark}
-      />
-    </div>
+      />} />
+      <Route path="/about" element={<About/>}/>
+    </Routes>
+    </Router>
   );
 }
 
