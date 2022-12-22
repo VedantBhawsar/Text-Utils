@@ -1,9 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const Nav = (props) => {
-
-
-
     return (
         <>
             <nav className={`navbar navbar-expand-lg navbar-${props.dark} bg-${props.dark}`}  >
