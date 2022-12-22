@@ -1,11 +1,11 @@
 import React from "react";
-import Alert from "./componend/Alert";
 import Home from "./componend/Home";
 import Nav from "./componend/Nav";
 import { useState } from "react";
 import copy from "copy-to-clipboard";
 import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
 import About from "./componend/About";
+import Footer from "./componend/Footer";
 
 function App() {
   const [Text, setText] = useState('');
@@ -81,16 +81,25 @@ function App() {
     }
   }
 
+  const Capitalize =()=>{
+    const arr = Text.split(" ");
+    for (var i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    }
+    const capitalize = arr.join(" ");
+    setText(capitalize)
+  }
+
   return (
     <Router>
       <Nav Dark_mode={Dark_mode} dark={dark} Refresh={Refresh} />
-      <Alert alert={alert} />
     <Routes>
       <Route  path="/" element={ <Home ConvertToUp={ConvertToUp} ConvertToLow={ConvertToLow} Textchange={Textchange}
-        Text={Text} ClrText={ClrText} Copytext={Copytext} dark={dark}
-      />} />
+        Text={Text} ClrText={ClrText} Copytext={Copytext} dark={dark} alert={alert} Capitalize={Capitalize}
+      />} /> 
       <Route path="/about" element={<About/>}/>
     </Routes>
+    <Footer dark={dark}/>
     </Router>
   );
 }
